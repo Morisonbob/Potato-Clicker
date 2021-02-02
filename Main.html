@@ -1,0 +1,335 @@
+﻿<!doctype html>
+<html lang="pt">
+<head>
+<!-- Required meta tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<title>Clique na batata</title>
+
+<style>
+
+	.contadorDeBatatas{
+		text-align: center;
+	}
+	
+	.contadorDeBatatas:hover{
+		transform: scale(1.2);
+	}
+	
+	.batatao{
+		transform: scale(.9);
+		transition: .2s;
+	}
+	
+	.batatao:active{
+		transform: scale(1.1);
+		transition: .2s;
+	}
+	
+	.autoClickerText{
+		position: absolute;
+		top: 77px;
+		left: 222px;
+	}
+	
+	.autoClickerValor{
+		position: absolute;
+		top: 78px;
+		left: 6px;
+	}
+	
+	.autoClicker{
+		position: relative;
+		top: 0px;
+		padding-bottom: 10px;
+	}
+	
+	.BatataDoceText{
+		position: absolute;
+		top: 77px;
+		left: 222px;
+	}
+	
+	.BatataDoceValor{
+		position: absolute;
+		top: 77px;
+		left: 6px;
+	}
+	
+	.BatataDoce{
+		position: relative;
+		padding-bottom: 10px;
+	}
+	
+	.PlantacaoBatataText{
+		position: absolute;
+		top: 77px;
+		left: 227px;
+	}
+	
+	.PlantacaoBatataValor {
+    	position: absolute;
+    	top: 77px;
+    	left: 6px;
+	}
+	
+	.PlantacaoBatata{
+		position: relative;
+		padding-bottom: 10px;
+	}
+	
+	.TemploBatataText{
+		position: absolute;
+		top: 78px;
+		left: 227px;
+	}
+	
+	.TemploBatataValor {
+    	position: absolute;
+    	top: 77px;
+    	left: 6px;
+	}
+	
+	.TemploBatata{
+		position: relative;
+		padding-bottom: 10px;
+	}
+	
+	.FabricaBatataText{
+		position: absolute;
+		top: 77px;
+		left: 227px;
+	}
+	
+	.FabricaBatataValor {
+    	position: absolute;
+    	top: 77px;
+    	left: 6px;
+	}
+	
+	.FabricaBatata{
+		position: relative;
+		padding-bottom: 10px;
+	}
+	
+	.botao{
+		
+	}
+	
+	.botao:hover{
+		filter: contrast(1.75);
+	}
+	
+	.bgGif{
+		background: url(PotatoRain.gif);
+    	height: 100%;
+    	background-position: center;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+	}
+
+</style>
+
+
+</head>
+
+<body>
+
+<div class="container-fluid bgGif">
+<p></p>
+<div class="row">
+<div class="col-md-8">
+	<div class="contadorDeBatatas" id="contadorBatatas">
+		Você tem 0 batatas!
+	</div>
+	<div onClick="AdicionaBatata(batatasPorClick);" class="img-fluid batatao">
+		<img src="Batata Principal.png" class="img-fluid"/>
+	</div>
+</div>
+
+	<div class="col-md-4">
+	
+		<div class="autoClicker botao" onClick="CompraAutoClicker()">
+			<img src="Auto-Clicker.png" class="img-fluid"/>
+			<div class="autoClickerText text" id="autoClickerText">
+				B$ 10
+			</div>
+			<div class="autoClickerValor valor" id="autoClickerValor">
+				0
+			</div>
+		</div>
+		
+		<div class="BatataDoce botao" onClick="CompraBatataDoce()">
+			<img src="BatataDoce.png" class="img-fluid"/>
+			<div class="BatataDoceText text" id="BatataDoceText">
+				B$ 750
+			</div>
+			<div class="BatataDoceValor valor" id="BatataDoceValor">
+				0
+			</div>
+		</div>
+		
+		<div class="PlantacaoBatata botao" onClick="CompraPlantacaoBatata()">
+			<img src="Plantação.png" class="img-fluid"/>
+			<div class="PlantacaoBatataText text" id="PlantacaoBatataText">
+				B$ 8500
+			</div>
+			<div class="PlantacaoBatataValor valor" id="PlantacaoBatataValor">
+				0
+			</div>
+		</div>
+		
+		<div class="TemploBatata botao" onClick="CompraTemploBatata()">
+			<img src="TemploDaBatata.png" class="img-fluid"/>
+			<div class="TemploBatataText text" id="TemploBatataText">
+				B$ 56000
+			</div>
+			<div class="TemploBatataValor valor" id="TemploBatataValor">
+				0
+			</div>
+		</div>
+		
+		<div class="FabricaBatata botao" onClick="CompraFabricaBatata()">
+			<img src="FabricaDeBatatas.png" class="img-fluid"/>
+			<div class="FabricaBatataText text" id="FabricaBatataText">
+				B$ 600000
+			</div>
+			<div class="FabricaBatataValor valor" id="FabricaBatataValor">
+				0
+			</div>
+		</div>
+		
+	</div>
+	</div>
+</div>
+
+
+
+<script>
+	
+	var numeroBatatas = 0;
+	var batatasPorSegundo = 0;
+	var batatasPorClick = 1;
+	
+	//Auto Clicker
+	var custoAutoClicker = 10;
+	var numeroClickers = 0;
+	var batatasClicker = .5;
+	
+	//Batata Doce
+	var custoBatataDoce = 750;
+	var numeroBatataDoce = 0;
+	var batatasBatataDoce = 25;
+	
+	//Plantação Batata
+	var custoPlantacaoBatata = 8500;
+	var numeroPlantacaoBatata = 0;
+	var batatasPlantacaoBatata= 150;
+	
+	//Templo Batata
+	var custoTemploBatata = 56000;
+	var numeroTemploBatata = 0;
+	var batatasTemploBatata= 1250;
+	
+	//Fabrica Batata
+	var custoFabricaBatata = 600000;
+	var numeroFabricaBatata = 0;
+	var batatasFabricaBatata= 7500;
+	
+	MoedasOverTime(batatasPorSegundo);
+	BatataManagger();
+	
+		
+	function MoedasOverTime(valor){		
+		numeroBatatas+= batatasPorSegundo;
+			
+		setTimeout(function() {MoedasOverTime(valor);}, 1000);
+	}
+	
+	function AdicionaBatata(valor){
+		numeroBatatas += valor;
+	}
+	
+	function BatataManagger(){
+		
+		if(numeroBatatas >= 1000000){
+			var novoNumero = (numeroBatatas)/1000000
+			document.getElementById("contadorBatatas").innerHTML = "Você tem " + parseFloat(Math.round(novoNumero * 100) / 100).toFixed(2) + "M batatas!";
+		}
+		
+		else if(numeroBatatas <=1){
+				document.getElementById("contadorBatatas").innerHTML = "Você tem " + Math.floor(numeroBatatas) + " batata!";
+			}else{
+				document.getElementById("contadorBatatas").innerHTML = "Você tem " + Math.floor(numeroBatatas) + " batatas!";
+			}
+		
+		setTimeout(BatataManagger, 100);
+	}
+	
+	function CompraAutoClicker(){
+		if (numeroBatatas >= custoAutoClicker){
+			numeroBatatas -= custoAutoClicker;
+			numeroClickers++;
+			custoAutoClicker = custoAutoClicker + (numeroClickers * 1.5);
+			batatasPorSegundo += batatasClicker; 
+			document.getElementById("autoClickerText").innerHTML = "B$ " + custoAutoClicker;
+			document.getElementById("autoClickerValor").innerHTML = numeroClickers;
+		}
+	}
+	
+	function CompraBatataDoce(){
+		if (numeroBatatas >= custoBatataDoce){
+			numeroBatatas -= custoBatataDoce;
+			numeroBatataDoce++;
+			custoBatataDoce = custoBatataDoce + (numeroBatataDoce * 1.5);
+			batatasPorSegundo += batatasBatataDoce; 
+			document.getElementById("BatataDoceText").innerHTML = "B$ " + custoBatataDoce;
+			document.getElementById("BatataDoceValor").innerHTML = numeroBatataDoce;
+		}
+	}
+	
+	function CompraPlantacaoBatata(){
+		if (numeroBatatas >= custoPlantacaoBatata){
+			numeroBatatas -= custoPlantacaoBatata;
+			numeroPlantacaoBatata++;
+			custoPlantacaoBatata = custoPlantacaoBatata + (numeroPlantacaoBatata * 1.5);
+			batatasPorSegundo += batatasPlantacaoBatata; 
+			document.getElementById("PlantacaoBatataText").innerHTML = "B$ " + custoPlantacaoBatata;
+			document.getElementById("PlantacaoBatataValor").innerHTML = numeroPlantacaoBatata;
+		}
+	}
+	
+	function CompraTemploBatata(){
+		if (numeroBatatas >= custoTemploBatata){
+			numeroBatatas -= custoTemploBatata;
+			numeroTemploBatata++;
+			custoTemploBatata = custoTemploBatata + (numeroTemploBatata * 1.5);
+			batatasPorSegundo += batatasTemploBatata; 
+			document.getElementById("TemploBatataText").innerHTML = "B$ " + custoTemploBatata;
+			document.getElementById("TemploBatataValor").innerHTML = numeroTemploBatata;
+		}
+	}
+	
+	function CompraFabricaBatata(){
+		if (numeroBatatas >= custoFabricaBatata){
+			numeroBatatas -= custoFabricaBatata;
+			numeroFabricaBatata++;
+			custoFabricaBatata = custoFabricaBatata + (numeroFabricaBatata * 1.5);
+			batatasPorSegundo += batatasFabricaBatata; 
+			document.getElementById("FabricaBatataText").innerHTML = "B$ " + custoFabricaBatata;
+			document.getElementById("FabricaBatataValor").innerHTML = numeroFabricaBatata;
+		}
+	}
+	
+</script>
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
