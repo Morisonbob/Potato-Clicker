@@ -13,7 +13,7 @@ https://potato-clicker.morisonbob.repl.co
 <li>An autosave feature
 <li>More clickables
 <li>Remake the mathematical system
-<li>Some other secreat features
+<li>Some other secret features
 </ul>
 
                          
